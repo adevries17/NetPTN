@@ -2,7 +2,7 @@
 using System.Text;
 
 namespace NetPing {
-    internal class Program {
+    internal class NetPingMain {
         static void Main(string[] args) {
             try {
                 // check for single argument and ping 4 times
@@ -11,22 +11,18 @@ namespace NetPing {
                         SendPing(args[0]);
                     }
 
-                }
-                // if multiple arguments and -t is specified ping infinite
-                else if (args.Length >= 2 && args[1] == "-t") {
+                } else if (args.Length >= 2 && args[1] == "-t") {
+                    // if multiple arguments and -t is specified ping infinitely
                     while (true) {
                         SendPing(args[0]);
                     }
-                }
-                // multiple arguments but not known argument
-                else if (args.Length >= 2 && args[1] != "-t") {
+                } else if (args.Length >= 2 && args[1] != "-t") {
+                    // multiple arguments but not known argument
                     Console.WriteLine("Unknown arguments");
-                } 
-            }
-            catch (IndexOutOfRangeException) {
+                }
+            } catch (IndexOutOfRangeException) {
                 Console.WriteLine("Not enough arguments");
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Console.WriteLine(e.ToString());
             }
         }
