@@ -38,7 +38,7 @@ namespace NetPing {
             PingReply reply = pingSender.Send(argument, timeout, buffer);
 
             if (reply.Status == IPStatus.Success) {
-                Console.WriteLine($"Address = {reply.Address} | Time = {reply.RoundtripTime} ms");
+                Console.WriteLine($"Address = {reply.Address} | Latency = {reply.RoundtripTime} ms | Time = {DateTime.Now}");
             }
             Thread.Sleep(1000);
         }
