@@ -41,8 +41,12 @@ namespace NetPing {
             }
         }
 
-        public static PingReply SendPing(string argument) {
+        public static PingReply SendPing(string destination, int ttl = 128) {
             Ping pingSender = new();
+
+            PingOptions options = new() {
+                Ttl = ttl
+            };
 
             // string bits
             string data = "this is a string of 32 bytes bob";
@@ -50,7 +54,7 @@ namespace NetPing {
             int timeout = 120;
 
 
-            PingReply reply = pingSender.Send(argument, timeout, buffer);
+            PingReply reply = pingSender.Send(destination, timeout, buffer, options);
 
             // return reply
             return reply;
