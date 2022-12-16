@@ -2,8 +2,8 @@
 using System.Text;
 
 namespace NetPing {
-    internal class NetPingMain {
-        static void Main(string[] args) {
+    public class NetPingMain {
+        public static void Main(string[] args) {
             try {
                 // check for single argument and ping 4 times
                 if (args.Length == 1) {
@@ -31,7 +31,7 @@ namespace NetPing {
             }
         }
 
-        static void SendPing(string argument) {
+        public static void SendPing(string argument) {
             Ping pingSender = new();
 
             // string bits
