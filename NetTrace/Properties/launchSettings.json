@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NetTrace": {
+      "commandName": "Project",
+      "commandLineArgs": "1.0.0.1"
+    }
+  }
+}
