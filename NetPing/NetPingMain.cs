@@ -8,14 +8,24 @@ namespace NetPing {
                 // check for single argument and ping 4 times
                 if (args.Length == 1) {
                     for (int i = 0; i < 4; i++) {
-                        SendPing(args[0]);
+                        PingReply ping = SendPing(args[0]);
+
+                        if (ping.Status == IPStatus.Success) {
+                            Console.WriteLine($"Address = {ping.Address} | Latency = {ping.RoundtripTime} ms | Time = {DateTime.Now}");
+                        }
+                        Thread.Sleep(1000);
                     }
 
                 }
+                // if multiple arguments and -t is specified ping infinitely
                 else if (args.Length >= 2 && args[1] == "-t") {
-                    // if multiple arguments and -t is specified ping infinitely
                     while (true) {
-                        SendPing(args[0]);
+                        PingReply ping = SendPing(args[0]);
+
+                        if (ping.Status == IPStatus.Success) {
+                            Console.WriteLine($"Address = {ping.Address} | Latency = {ping.RoundtripTime} ms | Time = {DateTime.Now}");
+                        }
+                        Thread.Sleep(1000);
                     }
                 }
                 else if (args.Length >= 2 && args[1] != "-t") {
@@ -31,7 +41,7 @@ namespace NetPing {
             }
         }
 
-        public static void SendPing(string argument) {
+        public static PingReply SendPing(string argument) {
             Ping pingSender = new();
 
             // string bits
@@ -39,12 +49,11 @@ namespace NetPing {
             byte[] buffer = Encoding.ASCII.GetBytes(data);
             int timeout = 120;
 
+
             PingReply reply = pingSender.Send(argument, timeout, buffer);
 
-            if (reply.Status == IPStatus.Success) {
-                Console.WriteLine($"Address = {reply.Address} | Latency = {reply.RoundtripTime} ms | Time = {DateTime.Now}");
-            }
-            Thread.Sleep(1000);
+            // return reply
+            return reply;
         }
     }
 }
