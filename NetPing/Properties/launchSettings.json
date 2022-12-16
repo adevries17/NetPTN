@@ -2,11 +2,11 @@
   "profiles": {
     "NetPing -t": {
       "commandName": "Project",
-      "commandLineArgs": "10.16.19.1 -t"
+      "commandLineArgs": "1.0.0.1 -t"
     },
     "NetPing": {
       "commandName": "Project",
-      "commandLineArgs": "10.16.19.1"
+      "commandLineArgs": "1.0.0.1"
     }
   }
 }
