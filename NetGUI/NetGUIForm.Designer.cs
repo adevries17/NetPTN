@@ -1,5 +1,5 @@
 ﻿namespace NetGUI {
-    partial class Form1 {
+    partial class NetGUIForm {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
