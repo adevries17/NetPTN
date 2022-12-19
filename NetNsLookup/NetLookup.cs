@@ -1,5 +1,5 @@
 ﻿namespace NetNsLookup {
-    internal class Program {
+    internal class NetLookup {
         static void Main(string[] args) {
             Console.WriteLine("Hello, World!");
         }
