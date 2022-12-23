@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "NetLookup IP": {
+      "commandName": "Project",
+      "commandLineArgs": "1.0.0.1"
+    },
+    "NetLookup Hostname": {
+      "commandName": "Project",
+      "commandLineArgs": "one.one.one.one"
+    }
+  }
+}
