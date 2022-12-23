@@ -35,8 +35,7 @@ namespace NetTrace {
                 else {
                     Console.WriteLine("Unable to perform traceroute");
                 }
-            }
-            while (!PingResults.Contains(destIP));
+            } while (!PingResults.Contains(destIP));
 
             // write out results
             int index = 0;

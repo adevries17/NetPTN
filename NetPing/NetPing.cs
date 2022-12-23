@@ -6,6 +6,8 @@ namespace NetPing {
         static void Main(string[] args) {
             try {
                 // check for single argument and ping 4 times
+                // if multiple arguments and -t is specified ping infinitely
+                // otherwise arguments are unknown
                 if (args.Length == 1) {
                     for (int i = 0; i < 4; i++) {
                         PingReply ping = SendPing(args[0]);
@@ -15,10 +17,7 @@ namespace NetPing {
                         }
                         Thread.Sleep(1000);
                     }
-
-                }
-                // if multiple arguments and -t is specified ping infinitely
-                else if (args.Length >= 2 && args[1] == "-t") {
+                } else if (args.Length >= 2 && args[1] == "-t") {
                     while (true) {
                         PingReply ping = SendPing(args[0]);
 
@@ -27,16 +26,13 @@ namespace NetPing {
                         }
                         Thread.Sleep(1000);
                     }
-                }
-                else if (args.Length >= 2 && args[1] != "-t") {
+                } else if (args.Length >= 2 && args[1] != "-t") {
                     // multiple arguments but not known argument
                     Console.WriteLine("Unknown arguments");
                 }
-            }
-            catch (IndexOutOfRangeException) {
+            } catch (IndexOutOfRangeException) {
                 Console.WriteLine("Not enough arguments");
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Console.WriteLine(e.ToString());
             }
         }
