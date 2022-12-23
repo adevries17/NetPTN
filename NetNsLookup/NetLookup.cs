@@ -1,7 +1,20 @@
-﻿namespace NetNsLookup {
+﻿using System.Net;
+using Windows.Networking;
+
+namespace NetNsLookup {
     internal class NetLookup {
         static void Main(string[] args) {
-            Console.WriteLine("Hello, World!");
+            IPHostEntry entry = GetHostEntry(args[0]);
+
+            Console.WriteLine($"Hostname: {entry.HostName}");
+
+            foreach (IPAddress result in entry.AddressList) {
+                Console.WriteLine(result);
+            }
+        }
+
+        static IPHostEntry GetHostEntry(string ip) {
+            return Dns.GetHostEntry(ip);
         }
     }
 }
