@@ -65,8 +65,8 @@ namespace NetPing
             };
 
             // string bits
-            const string data = "this is a string of 32 bytes bob";
-            byte[] buffer = Encoding.ASCII.GetBytes(data);
+            const string DATA = "this is a string of 32 bytes bob";
+            byte[] buffer = Encoding.ASCII.GetBytes(DATA);
             int timeout = 120;
 
             PingReply reply = pingSender.Send(destination, timeout, buffer, options);
