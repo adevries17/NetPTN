@@ -9,39 +9,44 @@ namespace NetPing
         {
             try
             {
-                // check for single argument and ping 4 times
-                // if multiple arguments and -t is specified ping infinitely
-                // otherwise arguments are unknown
-                if (args.Length == 1)
+                switch (args.Length) 
                 {
-                    for (int i = 0; i < 4; i++)
+                    // only contains ping destination
+                    case 1:
                     {
-                        PingReply ping = SendPing(args[0]);
-
-                        if (ping.Status == IPStatus.Success)
+                        for (int i = 0; i < 4; i++)
                         {
-                            Console.WriteLine($"Address = {ping.Address} | Latency = {ping.RoundtripTime} ms | Time = {DateTime.Now}");
+                            PingReply pinger = SendPing(args[^1], 32);
+                            if (pinger.Status == IPStatus.Success)
+                            {
+                                WriteResult(pinger);
+                            }
+                            // pause for 1s / 1000ms
+                            Thread.Sleep(1000);
                         }
-                        Thread.Sleep(1000);
+                        break;
                     }
-                }
-                else if (args.Length >= 2 && args[1] == "-t")
-                {
-                    while (true)
+                    // -t is the only specified
+                    case >= 2 when args.Contains("-t"):
                     {
-                        PingReply ping = SendPing(args[0]);
-
-                        if (ping.Status == IPStatus.Success)
+                        // loop infinitely
+                        while (true)
                         {
-                            Console.WriteLine($"Address = {ping.Address} | Latency = {ping.RoundtripTime} ms | Time = {DateTime.Now}");
+                            PingReply pinger = SendPing(args[0]);
+                            if (pinger.Status == IPStatus.Success)
+                            {
+                                WriteResult(pinger);
+                                // pause for 1s / 1000ms
+                                Thread.Sleep(1000);
+                            }
                         }
-                        Thread.Sleep(1000);
                     }
-                }
-                else if (args.Length >= 2 && args[1] != "-t")
-                {
-                    // multiple arguments but not known argument
-                    Console.WriteLine("Unknown arguments");
+                    default:
+                    {
+                        Console.WriteLine("Invalid arguments");
+
+                        break;
+                    }
                 }
             }
             catch (IndexOutOfRangeException)
@@ -54,11 +59,12 @@ namespace NetPing
             }
         }
 
-        // ping function
+        // send a ping
         static PingReply SendPing(string destination, int ttl = 128)
         {
+            // create new ping sender
             Ping pingSender = new();
-
+            // set ping options
             PingOptions options = new()
             {
                 Ttl = ttl
@@ -69,10 +75,17 @@ namespace NetPing
             byte[] buffer = Encoding.ASCII.GetBytes(DATA);
             int timeout = 120;
 
+            // send the ICMP packet
             PingReply reply = pingSender.Send(destination, timeout, buffer, options);
 
             // return reply
             return reply;
+        }
+
+        // write to console
+        static void WriteResult(PingReply ping)
+        {
+            Console.WriteLine($"Addr {ping.Address} | Latency {ping.RoundtripTime}ms | TTL {ping.Options.Ttl} | Time {DateTime.Now}");
         }
     }
 }
