@@ -40,6 +40,7 @@
             // 
             // QueryInputBox
             // 
+            this.QueryInputBox.BackColor = System.Drawing.Color.Gray;
             this.QueryInputBox.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.QueryInputBox.Location = new System.Drawing.Point(129, 6);
             this.QueryInputBox.Name = "QueryInputBox";
@@ -93,6 +94,7 @@
             // 
             this.TraceRouteTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TraceRouteTextbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TraceRouteTextbox.ForeColor = System.Drawing.Color.White;
             this.TraceRouteTextbox.Location = new System.Drawing.Point(11, 250);
             this.TraceRouteTextbox.Multiline = true;
             this.TraceRouteTextbox.Name = "TraceRouteTextbox";
@@ -103,6 +105,7 @@
             // 
             this.DNSTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.DNSTextbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DNSTextbox.ForeColor = System.Drawing.Color.White;
             this.DNSTextbox.Location = new System.Drawing.Point(11, 63);
             this.DNSTextbox.Multiline = true;
             this.DNSTextbox.Name = "DNSTextbox";

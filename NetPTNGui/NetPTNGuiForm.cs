@@ -10,7 +10,9 @@ namespace NetPTNGui
         }
 
 
-
+        // run nslookup
+        // run traceroute
+        // run ping
         private void GoButton_Click(object sender, EventArgs e)
         {
             // clear boxes
@@ -22,47 +24,51 @@ namespace NetPTNGui
             StopPingButton.DialogResult = DialogResult.Continue;
 
 
-            // do ping
-            switch (PingTCheckbox.Checked)
-            {
-                // ping -t is checked
-                case true:
+            Parallel.Invoke(
+                // do ping
+                () =>
                 {
-                    while (StopPingButton.DialogResult != DialogResult.OK)
-                    {
-                        PingTextbox.Text += "ping" + Environment.NewLine;
-
-                        // sleep 1s / 1000ms
-                        Thread.Sleep(1000);
-                    }
-                    break;
-                }
-
-                // ping -t not checked
-                case false:
+                    DoPing();
+                },
+                // do nslookup
+                () =>
                 {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        PingTextbox.Text += "ping" + Environment.NewLine;
-
-                        // sleep 1s / 1000ms
-                        Thread.Sleep(1000);
-                    }
-                    break;
+                    DoLookup();
+                },
+                // do traceroute
+                () =>
+                {
+                    DoTrace();
                 }
-
-            }
-
-
-            // do nslookup
-
-
-            // do traceroute
+            );
         }
 
+
+        // stop ping
         private void StopPingButton_Click(object sender, EventArgs e)
         {
             StopPingButton.DialogResult = DialogResult.OK;
+        }
+
+
+        // ping
+        private void DoPing()
+        {
+            PingTextbox.Text += "ping" + Environment.NewLine;
+        }
+
+
+        // nslookup
+        private void DoLookup()
+        {
+            DNSTextbox.Text += "nslookup" + Environment.NewLine;
+        }
+
+
+        // traceroute
+        private void DoTrace()
+        {
+            TraceRouteTextbox.Text += "trace" + Environment.NewLine;
         }
     }
 }
