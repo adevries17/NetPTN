@@ -9,7 +9,7 @@ namespace NetPing
         {
             try
             {
-                switch (args.Length) 
+                switch (args.Length)
                 {
                     // only contains ping destination
                     case 1:
