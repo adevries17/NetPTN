@@ -13,9 +13,12 @@ namespace NetPTNGui
         // run nslookup
         // run traceroute
         // run ping
-        private void GoButton_Click(object sender, EventArgs e)
+        private async void GoButton_Click(object sender, EventArgs e)
         {
-            // clear boxes
+            // lock the go button
+            GoButton.Enabled = false;
+
+            // clear text boxes
             DNSTextbox.Clear();
             TraceRouteTextbox.Clear();
             PingTextbox.Clear();
@@ -23,24 +26,17 @@ namespace NetPTNGui
             // reset StopPing
             StopPingButton.DialogResult = DialogResult.Continue;
 
+            // start ping
+            string PingReturn = await Task.Run(() => DoPing());
+            PingTextbox.Text += PingReturn;
+            
+            // start nslookup
+            string LookupReturn = await Task.Run(() => DoLookup());
+            DNSTextbox.Text += LookupReturn;
 
-            Parallel.Invoke(
-                // do ping
-                () =>
-                {
-                    DoPing();
-                },
-                // do nslookup
-                () =>
-                {
-                    DoLookup();
-                },
-                // do traceroute
-                () =>
-                {
-                    DoTrace();
-                }
-            );
+            // start traceroute
+            string TraceReturn = await Task.Run(() => DoTrace());
+            TraceRouteTextbox.Text += TraceReturn;
         }
 
 
@@ -52,23 +48,23 @@ namespace NetPTNGui
 
 
         // ping
-        private void DoPing()
+        private static string DoPing()
         {
-            PingTextbox.Text += "ping" + Environment.NewLine;
+            return "ping from another thread!" + Environment.NewLine;
         }
 
 
         // nslookup
-        private void DoLookup()
+        private static string DoLookup()
         {
-            DNSTextbox.Text += "nslookup" + Environment.NewLine;
+            return "nslookup from another thread!" + Environment.NewLine;
         }
 
 
         // traceroute
-        private void DoTrace()
+        private static string DoTrace()
         {
-            TraceRouteTextbox.Text += "trace" + Environment.NewLine;
+            return "trace from another thread!" + Environment.NewLine;
         }
     }
 }
