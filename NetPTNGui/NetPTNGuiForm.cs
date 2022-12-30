@@ -27,7 +27,7 @@ namespace NetPTNGui
             StopPingButton.DialogResult = DialogResult.Continue;
 
             // start ping
-            string PingReturn = await Task.Run(() => DoPing());
+            string PingReturn = await Task.Run(() => DoPing(QueryInputBox.Text.ToString()));
             PingTextbox.Text += PingReturn;
             
             // start nslookup
@@ -48,9 +48,14 @@ namespace NetPTNGui
 
 
         // ping
-        private static string DoPing()
+        private static string DoPing(string PingDest)
         {
-            return "ping from another thread!" + Environment.NewLine;
+            PingReply ping = NetPTNGui.SendPing(PingDest);
+            if (ping.Status == IPStatus.Success)
+            {
+                return string.Format($"Addr {ping.Address} | Latency {ping.RoundtripTime}ms | TTL {ping.Options.Ttl} | Time {DateTime.Now}");
+            }
+            else return "";
         }
 
 
