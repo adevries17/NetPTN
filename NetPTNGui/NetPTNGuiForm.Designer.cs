@@ -42,6 +42,7 @@
             // 
             this.QueryInputBox.BackColor = System.Drawing.Color.Gray;
             this.QueryInputBox.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.QueryInputBox.ForeColor = System.Drawing.Color.White;
             this.QueryInputBox.Location = new System.Drawing.Point(129, 6);
             this.QueryInputBox.Name = "QueryInputBox";
             this.QueryInputBox.Size = new System.Drawing.Size(200, 27);
@@ -84,10 +85,10 @@
             this.PingTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.PingTextbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PingTextbox.ForeColor = System.Drawing.Color.White;
-            this.PingTextbox.Location = new System.Drawing.Point(417, 63);
+            this.PingTextbox.Location = new System.Drawing.Point(537, 63);
             this.PingTextbox.Multiline = true;
             this.PingTextbox.Name = "PingTextbox";
-            this.PingTextbox.Size = new System.Drawing.Size(379, 420);
+            this.PingTextbox.Size = new System.Drawing.Size(435, 486);
             this.PingTextbox.TabIndex = 4;
             // 
             // TraceRouteTextbox
@@ -95,10 +96,10 @@
             this.TraceRouteTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TraceRouteTextbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TraceRouteTextbox.ForeColor = System.Drawing.Color.White;
-            this.TraceRouteTextbox.Location = new System.Drawing.Point(11, 250);
+            this.TraceRouteTextbox.Location = new System.Drawing.Point(11, 263);
             this.TraceRouteTextbox.Multiline = true;
             this.TraceRouteTextbox.Name = "TraceRouteTextbox";
-            this.TraceRouteTextbox.Size = new System.Drawing.Size(400, 233);
+            this.TraceRouteTextbox.Size = new System.Drawing.Size(520, 286);
             this.TraceRouteTextbox.TabIndex = 5;
             // 
             // DNSTextbox
@@ -106,10 +107,10 @@
             this.DNSTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.DNSTextbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DNSTextbox.ForeColor = System.Drawing.Color.White;
-            this.DNSTextbox.Location = new System.Drawing.Point(11, 63);
+            this.DNSTextbox.Location = new System.Drawing.Point(12, 63);
             this.DNSTextbox.Multiline = true;
             this.DNSTextbox.Name = "DNSTextbox";
-            this.DNSTextbox.Size = new System.Drawing.Size(400, 181);
+            this.DNSTextbox.Size = new System.Drawing.Size(519, 194);
             this.DNSTextbox.TabIndex = 6;
             // 
             // StopPingButton
@@ -129,7 +130,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(808, 495);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.StopPingButton);
             this.Controls.Add(this.DNSTextbox);
             this.Controls.Add(this.TraceRouteTextbox);
