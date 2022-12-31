@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.NetworkInformation;
 
 namespace NetPTNGui
@@ -26,17 +27,47 @@ namespace NetPTNGui
             // reset StopPing
             StopPingButton.DialogResult = DialogResult.Continue;
 
-            // start ping
-            string PingReturn = await Task.Run(() => DoPing(QueryInputBox.Text.ToString()));
-            PingTextbox.Text += PingReturn;
-            
+
             // start nslookup
-            string LookupReturn = await Task.Run(() => DoLookup());
-            DNSTextbox.Text += LookupReturn;
+            IPHostEntry lookupreturn = await Task.Run(() => DoLookup(QueryInputBox.Text.ToString()));
+
+            if (lookupreturn == null)
+            {
+                DNSTextbox.Text = string.Format($"No host entry found for {QueryInputBox.Text}");
+            }
+            else
+            {
+                // write out hostname
+                DNSTextbox.Text = string.Format($"Hostname: {lookupreturn.HostName}{Environment.NewLine}");
+
+                // write out aliases
+                DNSTextbox.Text += "Aliases" + Environment.NewLine;
+                foreach (string alias in lookupreturn.Aliases)
+                {
+                    DNSTextbox.Text += alias + Environment.NewLine;
+                }
+                DNSTextbox.Text += Environment.NewLine;
+
+                // write out addresses
+                DNSTextbox.Text += "Addresses" + Environment.NewLine;
+                foreach (IPAddress address in lookupreturn.AddressList)
+                {
+                    DNSTextbox.Text += address + Environment.NewLine;
+                }
+            }
+
+
 
             // start traceroute
-            string TraceReturn = await Task.Run(() => DoTrace());
-            TraceRouteTextbox.Text += TraceReturn;
+            string tracereturn = await Task.Run(() => DoTrace());
+            TraceRouteTextbox.Text += tracereturn;
+
+
+            // start ping
+
+
+
+            GoButton.Enabled = true;
         }
 
 
@@ -60,9 +91,11 @@ namespace NetPTNGui
 
 
         // nslookup
-        private static string DoLookup()
+        private static IPHostEntry DoLookup(string lookuphost)
         {
-            return "nslookup from another thread!" + Environment.NewLine;
+            IPHostEntry hostentry = NetPTNGui.NsLookup(lookuphost);
+
+            return hostentry;
         }
 
 

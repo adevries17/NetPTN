@@ -1,4 +1,6 @@
+using System.Net;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Text;
 
 namespace NetPTNGui
@@ -38,6 +40,19 @@ namespace NetPTNGui
 
             // return reply
             return reply;
+        }
+
+        // get dns record
+        public static IPHostEntry NsLookup(string host)
+        {
+            try
+            {
+                return Dns.GetHostEntry(host);
+            }
+            catch (SocketException)
+            {
+                return null;
+            }
         }
     }
 }
