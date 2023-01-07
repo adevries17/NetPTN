@@ -24,7 +24,7 @@ namespace NetNsLookup
             }
             catch
             {
-                throw; 
+                throw;
             }
         }
 

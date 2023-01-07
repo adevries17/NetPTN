@@ -9,6 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTrace", "NetTrace\NetTra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetLookup", "NetLookup\NetLookup.csproj", "{BFB4249F-0C48-46C3-816C-2F6B4E3360A0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetPTNGui", "NetPTNGui\NetPTNGui.csproj", "{186976FD-3CB5-4AE6-BCC9-247758A4B55D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{152C2300-5AE1-4551-BFEE-275266AEFC45} = {152C2300-5AE1-4551-BFEE-275266AEFC45}
+		{BFB4249F-0C48-46C3-816C-2F6B4E3360A0} = {BFB4249F-0C48-46C3-816C-2F6B4E3360A0}
+		{D4F784C7-D495-45DD-8D74-D7F9CC7E23BC} = {D4F784C7-D495-45DD-8D74-D7F9CC7E23BC}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +34,10 @@ Global
 		{BFB4249F-0C48-46C3-816C-2F6B4E3360A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFB4249F-0C48-46C3-816C-2F6B4E3360A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFB4249F-0C48-46C3-816C-2F6B4E3360A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{186976FD-3CB5-4AE6-BCC9-247758A4B55D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{186976FD-3CB5-4AE6-BCC9-247758A4B55D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{186976FD-3CB5-4AE6-BCC9-247758A4B55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{186976FD-3CB5-4AE6-BCC9-247758A4B55D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
