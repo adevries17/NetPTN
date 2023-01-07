@@ -28,13 +28,29 @@ namespace NetPTNGui
 
 
             // do a lookup
-            var lookprog = new Progress<string>(s => DNSTextbox.Text = s);
-            await Task.Run(() => Dolookup(lookprog));
-            DNSTextbox.Text = "changed";
+            IPHostEntry lookup = await Task.Run(() => Netlookup.DoNetLookup(QueryInputBox.Text));
+            DNSTextbox.Text += string.Format($"DNS results for {QueryInputBox.Text}{Environment.NewLine}");
+
+            // cnames
+            DNSTextbox.Text += "Aliases:" + Environment.NewLine;
+            foreach (string alias in lookup.Aliases)
+            {
+                DNSTextbox.Text += alias + Environment.NewLine;
+            }
+
+            DNSTextbox.Text += Environment.NewLine;
+
+            // ip addresses
+            DNSTextbox.Text += "Addresses:" + Environment.NewLine;
+            foreach (IPAddress ip in lookup.AddressList)
+            {
+                DNSTextbox.Text += ip + Environment.NewLine;
+            }
+
 
 
             // do a traceroute
-            IEnumerable<IPAddress> traceresult = await Task.Run(() => NetTrace.GetNetTrace(QueryInputBox.Text));
+            IEnumerable<IPAddress> traceresult = await Task.Run(() => NetTrace.DoNetTrace(QueryInputBox.Text));
             TraceRouteTextbox.Text += string.Format($"Traceroute for {QueryInputBox.Text}{Environment.NewLine}");
 
             int index = 0;
@@ -43,6 +59,7 @@ namespace NetPTNGui
                 TraceRouteTextbox.Text += index.ToString() + " " + ip.ToString() + Environment.NewLine;
                 index++;
             }
+
 
 
             // enable go button after process is complete

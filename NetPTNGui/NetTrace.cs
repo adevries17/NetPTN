@@ -8,7 +8,7 @@ namespace NetPTNGui
     {
         private const string DATA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
-        public static IEnumerable<IPAddress> GetNetTrace(string destination)
+        public static IEnumerable<IPAddress> DoNetTrace(string destination)
         {
             return GetNetTrace(destination, 1);
         }
