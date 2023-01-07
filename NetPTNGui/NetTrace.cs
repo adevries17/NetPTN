@@ -10,10 +10,10 @@ namespace NetPTNGui
 
         public static IEnumerable<IPAddress> DoNetTrace(string destination)
         {
-            return GetNetTrace(destination, 1);
+            return DoNetTrace(destination, 1);
         }
 
-        private static IEnumerable<IPAddress> GetNetTrace(string destination, int ttl)
+        private static IEnumerable<IPAddress> DoNetTrace(string destination, int ttl)
         {
             // create the pinger object with parameters
             Ping pinger = new();
@@ -39,7 +39,7 @@ namespace NetPTNGui
                 }
 
                 // next address
-                IEnumerable<IPAddress> tempaddr = GetNetTrace(destination, ttl + 1);
+                IEnumerable<IPAddress> tempaddr = DoNetTrace(destination, ttl + 1);
 
                 result.AddRange(tempaddr);
             }

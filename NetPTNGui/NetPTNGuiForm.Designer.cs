@@ -67,6 +67,7 @@
             this.PingTCheckbox.TabIndex = 2;
             this.PingTCheckbox.Text = "Ping -t";
             this.PingTCheckbox.UseVisualStyleBackColor = true;
+            this.PingTCheckbox.Visible = false;
             // 
             // GoButton
             // 
@@ -123,6 +124,7 @@
             this.StopPingButton.TabIndex = 7;
             this.StopPingButton.Text = "Stop pinging!";
             this.StopPingButton.UseVisualStyleBackColor = true;
+            this.StopPingButton.Visible = false;
             this.StopPingButton.Click += new System.EventHandler(this.StopPingButton_Click);
             // 
             // NetPTNGuiForm

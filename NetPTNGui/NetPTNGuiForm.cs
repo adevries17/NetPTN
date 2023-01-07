@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.NetworkInformation;
 
 namespace NetPTNGui
 {
@@ -49,6 +50,17 @@ namespace NetPTNGui
 
 
 
+            // do a ping
+            PingTextbox.Text += string.Format($"Ping Results for {QueryInputBox.Text}{Environment.NewLine}");
+
+            for (int i = 0; i < 4; i++)
+            {
+                PingReply pingresult = await Task.Run(() => Netping.DoNetPing(QueryInputBox.Text));
+                PingTextbox.Text += string.Format($"Addr {pingresult.Address} | Latency {pingresult.RoundtripTime}ms | Time {DateTime.Now}{Environment.NewLine}");
+            }
+
+
+
             // do a traceroute
             IEnumerable<IPAddress> traceresult = await Task.Run(() => NetTrace.DoNetTrace(QueryInputBox.Text));
             TraceRouteTextbox.Text += string.Format($"Traceroute for {QueryInputBox.Text}{Environment.NewLine}");
@@ -59,7 +71,6 @@ namespace NetPTNGui
                 TraceRouteTextbox.Text += index.ToString() + " " + ip.ToString() + Environment.NewLine;
                 index++;
             }
-
 
 
             // enable go button after process is complete
