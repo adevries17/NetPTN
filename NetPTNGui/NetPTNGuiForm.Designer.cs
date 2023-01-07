@@ -85,10 +85,10 @@
             this.PingTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.PingTextbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PingTextbox.ForeColor = System.Drawing.Color.White;
-            this.PingTextbox.Location = new System.Drawing.Point(537, 63);
+            this.PingTextbox.Location = new System.Drawing.Point(494, 63);
             this.PingTextbox.Multiline = true;
             this.PingTextbox.Name = "PingTextbox";
-            this.PingTextbox.Size = new System.Drawing.Size(435, 486);
+            this.PingTextbox.Size = new System.Drawing.Size(478, 486);
             this.PingTextbox.TabIndex = 4;
             // 
             // TraceRouteTextbox
@@ -99,7 +99,7 @@
             this.TraceRouteTextbox.Location = new System.Drawing.Point(11, 263);
             this.TraceRouteTextbox.Multiline = true;
             this.TraceRouteTextbox.Name = "TraceRouteTextbox";
-            this.TraceRouteTextbox.Size = new System.Drawing.Size(520, 286);
+            this.TraceRouteTextbox.Size = new System.Drawing.Size(477, 286);
             this.TraceRouteTextbox.TabIndex = 5;
             // 
             // DNSTextbox
@@ -110,7 +110,7 @@
             this.DNSTextbox.Location = new System.Drawing.Point(12, 63);
             this.DNSTextbox.Multiline = true;
             this.DNSTextbox.Name = "DNSTextbox";
-            this.DNSTextbox.Size = new System.Drawing.Size(519, 194);
+            this.DNSTextbox.Size = new System.Drawing.Size(476, 194);
             this.DNSTextbox.TabIndex = 6;
             // 
             // StopPingButton

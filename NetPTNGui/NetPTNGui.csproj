@@ -8,10 +8,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NetLookup\NetLookup.csproj" />
-    <ProjectReference Include="..\NetPing\NetPing.csproj" />
-    <ProjectReference Include="..\NetTrace\NetTrace.csproj" />
-  </ItemGroup>
-
 </Project>

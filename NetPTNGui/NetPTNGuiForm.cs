@@ -1,5 +1,4 @@
 using System.Net;
-using System.Net.NetworkInformation;
 
 namespace NetPTNGui
 {
@@ -28,45 +27,25 @@ namespace NetPTNGui
             StopPingButton.DialogResult = DialogResult.Continue;
 
 
-            // start nslookup
-            IPHostEntry lookupreturn = await Task.Run(() => DoLookup(QueryInputBox.Text.ToString()));
+            // do a lookup
+            var lookprog = new Progress<string>(s => DNSTextbox.Text = s);
+            await Task.Run(() => Dolookup(lookprog));
+            DNSTextbox.Text = "changed";
 
-            if (lookupreturn == null)
+
+            // do a traceroute
+            IEnumerable<IPAddress> traceresult = await Task.Run(() => NetTrace.GetNetTrace(QueryInputBox.Text));
+            TraceRouteTextbox.Text += string.Format($"Traceroute for {QueryInputBox.Text}{Environment.NewLine}");
+
+            int index = 0;
+            foreach (IPAddress ip in traceresult)
             {
-                DNSTextbox.Text = string.Format($"No host entry found for {QueryInputBox.Text}");
-            }
-            else
-            {
-                // write out hostname
-                DNSTextbox.Text = string.Format($"Hostname: {lookupreturn.HostName}{Environment.NewLine}");
-
-                // write out aliases
-                DNSTextbox.Text += "Aliases" + Environment.NewLine;
-                foreach (string alias in lookupreturn.Aliases)
-                {
-                    DNSTextbox.Text += alias + Environment.NewLine;
-                }
-                DNSTextbox.Text += Environment.NewLine;
-
-                // write out addresses
-                DNSTextbox.Text += "Addresses" + Environment.NewLine;
-                foreach (IPAddress address in lookupreturn.AddressList)
-                {
-                    DNSTextbox.Text += address + Environment.NewLine;
-                }
+                TraceRouteTextbox.Text += index.ToString() + " " + ip.ToString() + Environment.NewLine;
+                index++;
             }
 
 
-
-            // start traceroute
-            string tracereturn = await Task.Run(() => DoTrace());
-            TraceRouteTextbox.Text += tracereturn;
-
-
-            // start ping
-
-
-
+            // enable go button after process is complete
             GoButton.Enabled = true;
         }
 
@@ -78,31 +57,12 @@ namespace NetPTNGui
         }
 
 
-        // ping
-        private static string DoPing(string PingDest)
+
+        // perform a lookup
+        public static void Dolookup(IProgress<string> progress)
         {
-            PingReply ping = NetPTNGui.SendPing(PingDest);
-            if (ping.Status == IPStatus.Success)
-            {
-                return string.Format($"Addr {ping.Address} | Latency {ping.RoundtripTime}ms | TTL {ping.Options.Ttl} | Time {DateTime.Now}");
-            }
-            else return "";
-        }
-
-
-        // nslookup
-        private static IPHostEntry DoLookup(string lookuphost)
-        {
-            IPHostEntry hostentry = NetPTNGui.NsLookup(lookuphost);
-
-            return hostentry;
-        }
-
-
-        // traceroute
-        private static string DoTrace()
-        {
-            return "trace from another thread!" + Environment.NewLine;
+            Task.Delay(1000).Wait();
+            progress.Report("in worker task"); 
         }
     }
 }
