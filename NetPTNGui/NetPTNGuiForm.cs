@@ -90,7 +90,7 @@ namespace NetPTNGui
         public static void Dolookup(IProgress<string> progress)
         {
             Task.Delay(1000).Wait();
-            progress.Report("in worker task"); 
+            progress.Report("in worker task");
         }
     }
 }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="NetPTN" Height="600" Width="800">
 
-    <Grid Margin="8">
+    <Grid Margin="8" Background="Black">
         <!-- Define the rows in the grid system-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,18 +16,21 @@
 
         <!-- Define the columns in the grid system-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Here is where the controls will be defined-->
-        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,0,0,0">
-            <Label FontSize="14">IP or Hostname:</Label>
-            <CheckBox>Ping -t</CheckBox>
-        </StackPanel>
+        <DockPanel Grid.Row="0" Grid.Column="0">
+            <Label FontSize="14" Foreground="White">IP or Hostname:</Label>
+            <TextBox x:Name="QueryInput" Foreground="White" BorderThickness="2" Background="Gray" Height="30"></TextBox>
+        </DockPanel>
 
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="QueryInput"></TextBox>
+        <UniformGrid Grid.Column="1" Rows="1">
+            <Button x:Name="GoButton" Background="Black" Foreground="White" FontSize="24">Go</Button>
+            <Button x:Name="StopButton" Background="Black" Foreground="White" FontSize="24">Stop</Button>
+        </UniformGrid>
 
+        <TextBlock Grid.Row="1" Grid.Column="0" Background="Gray" Foreground="White"></TextBlock>
     </Grid>
 </Window>

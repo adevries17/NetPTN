@@ -8,7 +8,7 @@ namespace NetPTNGui
     {
         // constant to use as the data sent in the ping packet
         private const string DATA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        
+
         // do a ping using a string
         public static PingReply DoNetPing(string destination)
         {
