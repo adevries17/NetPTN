@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NetPTNGui"
         mc:Ignorable="d"
-        Title="NetPTN" Height="600" Width="800">
+        Title="NetPTN" Height="600" Width="800"
+        Background="Black">
 
     <Grid Margin="8" Background="Black">
         <!-- Define the rows in the grid system-->
@@ -21,16 +22,18 @@
         </Grid.ColumnDefinitions>
 
         <!-- Here is where the controls will be defined-->
-        <DockPanel Grid.Row="0" Grid.Column="0">
+        <DockPanel Grid.Row="0" Grid.Column="0" Margin="2">
             <Label FontSize="14" Foreground="White">IP or Hostname:</Label>
             <TextBox x:Name="QueryInput" Foreground="White" BorderThickness="2" Background="Gray" Height="30"></TextBox>
         </DockPanel>
 
-        <UniformGrid Grid.Column="1" Rows="1">
+        <UniformGrid Grid.Column="1" Rows="1" Margin="2">
             <Button x:Name="GoButton" Background="Black" Foreground="White" FontSize="24">Go</Button>
             <Button x:Name="StopButton" Background="Black" Foreground="White" FontSize="24">Stop</Button>
         </UniformGrid>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Background="Gray" Foreground="White"></TextBlock>
+        <TextBlock
+            x:Name="DNSTextBlock" Grid.Row="1" Grid.Column="0" Background="Gray" Foreground="White">
+        </TextBlock>
     </Grid>
 </Window>
