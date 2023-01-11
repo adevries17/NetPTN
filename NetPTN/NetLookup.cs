@@ -1,8 +1,8 @@
 ﻿using System.Net;
 
-namespace NetPTNGui
+namespace NetPTN
 {
-    public class Netlookup
+    internal class NetLookup
     {
         public static IPHostEntry DoNetLookup(string lookupaddr)
         {

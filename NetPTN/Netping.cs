@@ -1,14 +1,15 @@
 ﻿using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Threading;
 
-namespace NetPTNGui
+namespace NetPTN
 {
     public class Netping
     {
         // constant to use as the data sent in the ping packet
         private const string DATA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        
+
         // do a ping using a string
         public static PingReply DoNetPing(string destination)
         {

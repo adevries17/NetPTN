@@ -13,40 +13,40 @@ namespace NetPing
                 {
                     // only contains ping destination
                     case 1:
-                    {
-                        for (int i = 0; i < 4; i++)
                         {
-                            PingReply pinger = SendPing(args[^1], 32);
-                            if (pinger.Status == IPStatus.Success)
+                            for (int i = 0; i < 4; i++)
                             {
-                                WriteResult(pinger);
-                            }
-                            // pause for 1s / 1000ms
-                            Thread.Sleep(1000);
-                        }
-                        break;
-                    }
-                    // -t is the only specified
-                    case >= 2 when args.Contains("-t"):
-                    {
-                        // loop infinitely
-                        while (true)
-                        {
-                            PingReply pinger = SendPing(args[0]);
-                            if (pinger.Status == IPStatus.Success)
-                            {
-                                WriteResult(pinger);
+                                PingReply pinger = SendPing(args[^1], 32);
+                                if (pinger.Status == IPStatus.Success)
+                                {
+                                    WriteResult(pinger);
+                                }
                                 // pause for 1s / 1000ms
                                 Thread.Sleep(1000);
                             }
+                            break;
                         }
-                    }
+                    // -t is the only specified
+                    case >= 2 when args.Contains("-t"):
+                        {
+                            // loop infinitely
+                            while (true)
+                            {
+                                PingReply pinger = SendPing(args[0]);
+                                if (pinger.Status == IPStatus.Success)
+                                {
+                                    WriteResult(pinger);
+                                    // pause for 1s / 1000ms
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                        }
                     default:
-                    {
-                        Console.WriteLine("Invalid arguments");
+                        {
+                            Console.WriteLine("Invalid arguments");
 
-                        break;
-                    }
+                            break;
+                        }
                 }
             }
             catch (IndexOutOfRangeException)
