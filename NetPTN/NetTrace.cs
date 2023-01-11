@@ -1,8 +1,9 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 
-namespace NetPTNGui
+namespace NetPTN
 {
     public class NetTrace
     {

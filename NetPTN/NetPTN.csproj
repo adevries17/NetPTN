@@ -4,9 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWindowsForms>True</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>True</UseWPF>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
 </Project>
